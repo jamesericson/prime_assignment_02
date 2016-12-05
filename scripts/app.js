@@ -28,7 +28,7 @@ $( document ).ready( function(){
       if (currentIndex > profiles.length-1){currentIndex = 0;}
       displayProfile(currentIndex);
     } //end (first) if
-  }, 1000);
+  }, 10000);
 
 //BUTTON LISTENERS//
     $('.navigate-buttons').on('click', clickedNextOrPrevious);
@@ -83,6 +83,10 @@ $( document ).ready( function(){
       $('#profile-pic').html(profilePic);
       $('#profile-name').text(name);
       $('#profile-info').text(person.info);
+      // console.log(  $( ".not-current-index").attr(index) );
+      // $( ".not-current-index").attr(index).removeClass("not-current-index");//.addClass('current-index');
+      //
+
     }; // end displayProfiles
 
     function displayIndexNav(array){
@@ -90,7 +94,8 @@ $( document ).ready( function(){
         var person = array[i];
         $("#index-nav").append("<div class='name-button'></div>");
         var $el = $("#index-nav").children().last();
-        $el.append("<button>" + person.first_name + "</button>");
+        $el.append("<button class='not-current-index' >" + person.first_name + "</button>");
+        $el.attr('id', 'index'+i );
         $el.attr('name', i );
       }// end for
     } // end displayIndexNav
