@@ -1,4 +1,5 @@
 var currentIndex = 0;
+var previousIndex = -1;
 var profiles = [];
 var isPaused = false
 
@@ -23,6 +24,7 @@ $( document ).ready( function(){
 
 //TIMED ACTION//
   var autoNext = setInterval( function(){
+    previousIndex = currentIndex;
     if(!isPaused){
       currentIndex++;
       if (currentIndex > profiles.length-1){currentIndex = 0;}
@@ -40,7 +42,8 @@ $( document ).ready( function(){
 
     function clickedIndex(){
       console.log('clicked index');
-      var currentIndex = Number($(this).attr("name") );
+      previousIndex = currentIndex;
+      currentIndex = Number($(this).attr("name") );
       displayProfile(currentIndex);
     } //end clickedIndex
 
@@ -59,6 +62,7 @@ $( document ).ready( function(){
 
     function clickedNextOrPrevious(){
       console.log('click!');
+      previousIndex = currentIndex;
        if ($(this).attr("id") == "next"){
          currentIndex++;
        } else {
@@ -83,9 +87,14 @@ $( document ).ready( function(){
       $('#profile-pic').html(profilePic);
       $('#profile-name').text(name);
       $('#profile-info').text(person.info);
-      // console.log(  $( ".not-current-index").attr(index) );
-      // $( ".not-current-index").attr(index).removeClass("not-current-index");//.addClass('current-index');
-      //
+
+      var address = $("#index-nav").find($( ".name-button")[previousIndex]).children().first();
+      address.removeClass("current-index").addClass('not-current-index');
+
+      var address = $("#index-nav").find($( ".name-button")[index]).children().first();
+      console.log("button address", address );
+      address.removeClass("not-current-index").addClass('current-index');
+
 
     }; // end displayProfiles
 
@@ -95,7 +104,6 @@ $( document ).ready( function(){
         $("#index-nav").append("<div class='name-button'></div>");
         var $el = $("#index-nav").children().last();
         $el.append("<button class='not-current-index' >" + person.first_name + "</button>");
-        $el.attr('id', 'index'+i );
         $el.attr('name', i );
       }// end for
     } // end displayIndexNav

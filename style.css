@@ -56,23 +56,24 @@ img {
 }
 
 #index-nav {
-  margin-top: 30px;
+  margin-top: 15px;
   text-align: right;
   min-width: 100px;
   max-width: 100px;
 }
 
 .not-current-index {
-  color: olive;
+  color: steelblue;
 }
 
 .current-index {
-  background-color: olive;
+  background-color: steelblue;
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 13px;
   margin: 1px;
+  padding: 5px 20px;
 }
 
 #profile-pic {
@@ -86,17 +87,25 @@ img {
 
 .profile-text {
   position: relative;
-  right: 80px;
-  top: 200px;
-  min-width: 130px;
-  max-width: 130px;
+  right: 60px;
+  top: 150px;
+  max-height: 100px;
+  min-width: 160px;
+  max-width: 160px;
+  padding: 10px 20px;
+  background-color: lightsteelblue;
+  border: 6px solid steelblue;
+  border-radius: 10px;
+  z-index: -9999;
 }
 
 .profile-text h2 {
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 25px;
+  color: white;
 }
 
 .profile-text p {
   font-size: 10px;
+  color: steelblue;
 }
