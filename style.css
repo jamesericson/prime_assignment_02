@@ -8,8 +8,8 @@ html, body, h1, h2, h3, p, ul, li, a {
 
 html {
   background-color: white;
-  min-width: 915px;
-  max-width: 1050px;
+  min-width: 1000px;
+  /*max-width: 1050px;*/
 }
 
 .top {
@@ -46,20 +46,29 @@ h1{
 
 img {
   width: 450px;
-  height: auto;
+  height: 310px;
   border-radius: 10px;
+
+}
+
+#pic-one {
+  position: relative;
+}
+
+#pic-two  {
+  top:155px;
+  position: absolute;
 }
 
 .content{
-  display: flex;
   margin: 0 auto;
 }
 
 #index-nav {
-  margin-top: 15px;
-  text-align: right;
-  min-width: 100px;
-  max-width: 100px;
+  margin: 15px 3% 0;
+  text-align: center;
+  min-width: 150px;
+  max-width: 150px;
 }
 
 .not-current-index {
@@ -76,18 +85,18 @@ img {
   padding: 5px 20px;
 }
 
-#profile-pic {
-  text-align: center
+.below-img {
+  text-align: center;
 }
 
 .navigate-buttons {
+  display: inline-flex;
   margin: 20px 10px;
-  height: 20px;
 }
 
 .profile-text {
   position: relative;
-  right: 60px;
+  left: -460px;
   top: 150px;
   max-height: 100px;
   min-width: 160px;

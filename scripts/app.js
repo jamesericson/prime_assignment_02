@@ -1,7 +1,8 @@
 var currentIndex = 0;
 var previousIndex = -1;
 var profiles = [];
-var isPaused = false
+var isPaused = false;
+var isfaded = false;
 
 $( document ).ready( function(){
 
@@ -81,19 +82,38 @@ $( document ).ready( function(){
     function displayProfile(index){
       console.log("in displayProfiles",index, profiles[index]);
       var person = profiles[index];
+      var prePerson = profiles[previousIndex]
       var name = person.first_name + ' ' + person.last_name;
-      var profilePic = '<img id="profile-pic" src="'+ person.picUrl +'" alt="'+ name +'">';
-      profilePic += '<p>'+ (Number(index)+1) +'/'+ profiles.length +'</p>';
-      $('#profile-pic').html(profilePic);
+
+      if (previousIndex !== -1){
+        $('.profile-text').animate({left: "-=400px"}, 500);
+      }
+
+      if (!isfaded){
+        $('#pic-two').attr("src", person.picUrl)
+        $('#pic-one').animate({opacity: 0}, 800);
+        isfaded = true;
+        console.log('did it fade OUT?');
+      } else {
+        $('#pic-one').attr("src", person.picUrl)
+        $('#pic-one').animate({opacity: 1}, 800);
+        isfaded = false;
+        console.log('did it fade IN?');
+      }
+
+
       $('#profile-name').text(name);
       $('#profile-info').text(person.info);
+      $('#index').text((Number(index)+1) +'/'+ profiles.length);
 
       var address = $("#index-nav").find($( ".name-button")[previousIndex]).children().first();
       address.removeClass("current-index").addClass('not-current-index');
 
       var address = $("#index-nav").find($( ".name-button")[index]).children().first();
-      console.log("button address", address );
       address.removeClass("not-current-index").addClass('current-index');
+
+
+      $('.profile-text').animate({left: "+=400px"}, 900);
 
 
     }; // end displayProfiles
