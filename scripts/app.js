@@ -85,35 +85,41 @@ $( document ).ready( function(){
       var prePerson = profiles[previousIndex]
       var name = person.first_name + ' ' + person.last_name;
 
-      if (previousIndex !== -1){
-        $('.profile-text').animate({left: "-=400px"}, 500);
-      }
+  
+        $('.profile-text').animate({left: "-=400px"}, 500, function() {
+          console.log('does this work?');
 
-      if (!isfaded){
-        $('#pic-two').attr("src", person.picUrl)
-        $('#pic-one').animate({opacity: 0}, 800);
-        isfaded = true;
-        console.log('did it fade OUT?');
-      } else {
-        $('#pic-one').attr("src", person.picUrl)
-        $('#pic-one').animate({opacity: 1}, 800);
-        isfaded = false;
-        console.log('did it fade IN?');
-      }
+          if (!isfaded){
+            $('#pic-two').attr("src", person.picUrl)
+            $('#pic-one').animate({opacity: 0}, 800);
+            isfaded = true;
+            console.log('did it fade OUT?');
+          } else {
+            $('#pic-one').attr("src", person.picUrl)
+            $('#pic-one').animate({opacity: 1}, 800);
+            isfaded = false;
+            console.log('did it fade IN?');
+          }
 
 
-      $('#profile-name').text(name);
-      $('#profile-info').text(person.info);
-      $('#index').text((Number(index)+1) +'/'+ profiles.length);
+          $('#profile-name').text(name);
+          $('#profile-info').text(person.info);
+          $('#index').text((Number(index)+1) +'/'+ profiles.length);
 
-      var address = $("#index-nav").find($( ".name-button")[previousIndex]).children().first();
-      address.removeClass("current-index").addClass('not-current-index');
+          var address = $("#index-nav").find($( ".name-button")[previousIndex]).children().first();
+          address.removeClass("current-index").addClass('not-current-index');
 
-      var address = $("#index-nav").find($( ".name-button")[index]).children().first();
-      address.removeClass("not-current-index").addClass('current-index');
+          var address = $("#index-nav").find($( ".name-button")[index]).children().first();
+          address.removeClass("not-current-index").addClass('current-index');
+
+        });
 
 
       $('.profile-text').animate({left: "+=400px"}, 900);
+
+
+
+
 
 
     }; // end displayProfiles
